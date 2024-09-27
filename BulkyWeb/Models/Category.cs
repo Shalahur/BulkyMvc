@@ -7,6 +7,7 @@ public class Category
 {
     [Key] 
     public int Id { get; set; }
+    
     [Required]
     [StringLength(Int32.MaxValue)]
     [DisplayName("Category Name")]
