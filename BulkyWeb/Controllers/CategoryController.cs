@@ -18,7 +18,7 @@ public class CategoryController : Controller
         List<Category> categories = _db.Categories.ToList();
         return View(categories);
     }
-    
+
     public IActionResult Create()
     {
         return View();
@@ -37,6 +37,7 @@ public class CategoryController : Controller
         {
             _db.Categories.Add(category);
             _db.SaveChanges();
+            TempData["Success"] = "Category created successfully.";
             return RedirectToAction("Index");
         }
 
@@ -49,7 +50,7 @@ public class CategoryController : Controller
         {
             return NotFound();
         }
-        
+
         Category? category = _db.Categories.Find(id);
 
         if (category == null)
@@ -67,9 +68,36 @@ public class CategoryController : Controller
         {
             _db.Categories.Update(category);
             _db.SaveChanges();
+            TempData["Success"] = "Category updated successfully.";
             return RedirectToAction("Index");
         }
 
         return View(category);
+    }
+
+    public IActionResult Delete(int? id)
+    {
+        if (id == null || id == 0) return NotFound();
+
+        Category? category = _db.Categories.Find(id);
+
+        if (category == null) return NotFound();
+
+        return View(category);
+    }
+
+    [HttpPost, ActionName("Delete")]
+    public IActionResult DeleteCategory(int? id)
+    {
+        if (id == null || id == 0) return NotFound();
+
+        Category? category = _db.Categories.Find(id);
+
+        if (category == null) return NotFound();
+
+        _db.Categories.Remove(category);
+        _db.SaveChanges();
+        TempData["Success"] = "Category deleted successfully.";
+        return RedirectToAction("Index");
     }
 }

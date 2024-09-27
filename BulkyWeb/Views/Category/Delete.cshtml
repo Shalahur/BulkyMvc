@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Update create</title>
+    <title>Delete create</title>
 </head>
 <body>
 <div>
@@ -14,22 +14,19 @@
                 <hr/>
             </div>
 
-            <div asp-validation-summary="All" class="text-danger"></div> @*To show all error message top of the page*@
             <input asp-for="Id" hidden="hidden"/>
             <div class="mb-3 row">
                 <label asp-for="Name" class="p-0"></label>
-                <input asp-for="Name" class="form-control"/>
-                <span asp-validation-for="Name" class="text-danger"></span>
+                <input asp-for="Name" class="form-control" disabled/>
             </div>
             <div class="mb-3 row">
                 <label asp-for="DisplayOrder" class="p-0"></label>
-                <input asp-for="DisplayOrder" class="form-control"/>
-                <span asp-validation-for="DisplayOrder" class="text-danger"></span>
+                <input asp-for="DisplayOrder" class="form-control" disabled/>
             </div>
 
             <div class="row">
                 <div class="col-6 col-md-3">
-                    <button type="submit" class="btn btn-primary form-control">Update</button>
+                    <button type="submit" class="btn btn-danger form-control">Delete</button>
                 </div>
                 <div class="col-6 col-md-3">
                     <a asp-controller="Category" asp-action="Index" class="btn btn-secondary border form-control">
