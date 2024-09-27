@@ -21,7 +21,26 @@ public class CategoryController : Controller
     
     public IActionResult Create()
     {
-        
         return View();
+    }
+
+    [HttpPost]
+    public IActionResult Create(Category category)
+    {
+        // for custom error message
+        if (category.Name == category.DisplayOrder.ToString())
+        {
+            ModelState.AddModelError("Name", "Name and Display Order must be different.");
+        }
+
+        if (ModelState.IsValid)
+        {
+            _db.Categories.Add(category);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        return View(category);
+
     }
 }
