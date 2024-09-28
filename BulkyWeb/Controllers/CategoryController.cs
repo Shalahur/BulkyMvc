@@ -15,7 +15,7 @@ public class CategoryController : Controller
 
     public IActionResult Index()
     {
-        List<Category> categories = _db.category.GetAll().ToList();
+        List<Category> categories = _db.Category.GetAll().ToList();
         return View(categories);
     }
 
@@ -35,7 +35,7 @@ public class CategoryController : Controller
 
         if (ModelState.IsValid)
         {
-            _db.category.Add(category);
+            _db.Category.Add(category);
             _db.Save();
             TempData["Success"] = "Category created successfully.";
             return RedirectToAction("Index");
@@ -51,7 +51,7 @@ public class CategoryController : Controller
             return NotFound();
         }
 
-        Category? category = _db.category.Get(u => u.Id == id);
+        Category? category = _db.Category.Get(u => u.Id == id);
 
         if (category == null)
         {
@@ -66,7 +66,7 @@ public class CategoryController : Controller
     {
         if (ModelState.IsValid)
         {
-            _db.category.Update(category);
+            _db.Category.Update(category);
             _db.Save();
             TempData["Success"] = "Category updated successfully.";
             return RedirectToAction("Index");
@@ -79,7 +79,7 @@ public class CategoryController : Controller
     {
         if (id == null || id == 0) return NotFound();
 
-        Category? category = _db.category.Get(u => u.Id == id);
+        Category? category = _db.Category.Get(u => u.Id == id);
 
         if (category == null) return NotFound();
 
@@ -91,11 +91,11 @@ public class CategoryController : Controller
     {
         if (id == null || id == 0) return NotFound();
 
-        Category? category = _db.category.Get(u => u.Id == id);
+        Category? category = _db.Category.Get(u => u.Id == id);
 
         if (category == null) return NotFound();
 
-        _db.category.Remove(category);
+        _db.Category.Remove(category);
         _db.Save();
         TempData["Success"] = "Category deleted successfully.";
         return RedirectToAction("Index");

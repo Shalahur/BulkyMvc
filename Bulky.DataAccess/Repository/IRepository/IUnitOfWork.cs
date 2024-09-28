@@ -2,6 +2,6 @@
 
 public interface IUnitOfWork
 {
-    ICategoryRepository category { get; }
+    ICategoryRepository Category { get; }
     void Save();
 }
