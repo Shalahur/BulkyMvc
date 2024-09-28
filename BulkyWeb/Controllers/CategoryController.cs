@@ -1,5 +1,4 @@
-﻿using Bulky.DataAccess.Data;
-using Bulky.DataAccess.Repository.IRepository;
+﻿using Bulky.DataAccess.Repository.IRepository;
 using Bulky.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,16 +6,16 @@ namespace BulkyWeb.Controllers;
 
 public class CategoryController : Controller
 {
-    private readonly ICategoryRepository _db;
+    private readonly IUnitOfWork _db;
 
-    public CategoryController(ICategoryRepository db)
+    public CategoryController(IUnitOfWork db)
     {
         _db = db;
     }
 
     public IActionResult Index()
     {
-        List<Category> categories = _db.GetAll().ToList();
+        List<Category> categories = _db.category.GetAll().ToList();
         return View(categories);
     }
 
@@ -36,7 +35,7 @@ public class CategoryController : Controller
 
         if (ModelState.IsValid)
         {
-            _db.Add(category);
+            _db.category.Add(category);
             _db.Save();
             TempData["Success"] = "Category created successfully.";
             return RedirectToAction("Index");
@@ -52,7 +51,7 @@ public class CategoryController : Controller
             return NotFound();
         }
 
-        Category? category = _db.Get(u => u.Id == id);
+        Category? category = _db.category.Get(u => u.Id == id);
 
         if (category == null)
         {
@@ -67,7 +66,7 @@ public class CategoryController : Controller
     {
         if (ModelState.IsValid)
         {
-            _db.Update(category);
+            _db.category.Update(category);
             _db.Save();
             TempData["Success"] = "Category updated successfully.";
             return RedirectToAction("Index");
@@ -80,7 +79,7 @@ public class CategoryController : Controller
     {
         if (id == null || id == 0) return NotFound();
 
-        Category? category = _db.Get(u => u.Id == id);
+        Category? category = _db.category.Get(u => u.Id == id);
 
         if (category == null) return NotFound();
 
@@ -92,11 +91,11 @@ public class CategoryController : Controller
     {
         if (id == null || id == 0) return NotFound();
 
-        Category? category = _db.Get(u => u.Id == id);
+        Category? category = _db.category.Get(u => u.Id == id);
 
         if (category == null) return NotFound();
 
-        _db.Remove(category);
+        _db.category.Remove(category);
         _db.Save();
         TempData["Success"] = "Category deleted successfully.";
         return RedirectToAction("Index");
