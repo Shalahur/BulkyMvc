@@ -2,6 +2,12 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BulkyWeb", "BulkyWeb\BulkyWeb.csproj", "{A66CD09A-31A7-4E4B-B45D-81EA9AC6D065}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bulky.DataAccess", "Bulky.DataAccess\Bulky.DataAccess.csproj", "{3991EB3B-A444-43C7-A588-4A3EBC0447D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bulky.Models", "Bulky.Models\Bulky.Models.csproj", "{E2890AA0-E5B9-4480-9FC0-540CCE4000AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bulky.Utility", "Bulky.Utility\Bulky.Utility.csproj", "{E51A3C03-C8A2-41A6-914C-0D7A50049E5E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +18,17 @@ Global
 		{A66CD09A-31A7-4E4B-B45D-81EA9AC6D065}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A66CD09A-31A7-4E4B-B45D-81EA9AC6D065}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A66CD09A-31A7-4E4B-B45D-81EA9AC6D065}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3991EB3B-A444-43C7-A588-4A3EBC0447D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3991EB3B-A444-43C7-A588-4A3EBC0447D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3991EB3B-A444-43C7-A588-4A3EBC0447D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3991EB3B-A444-43C7-A588-4A3EBC0447D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2890AA0-E5B9-4480-9FC0-540CCE4000AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2890AA0-E5B9-4480-9FC0-540CCE4000AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2890AA0-E5B9-4480-9FC0-540CCE4000AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2890AA0-E5B9-4480-9FC0-540CCE4000AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E51A3C03-C8A2-41A6-914C-0D7A50049E5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E51A3C03-C8A2-41A6-914C-0D7A50049E5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E51A3C03-C8A2-41A6-914C-0D7A50049E5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E51A3C03-C8A2-41A6-914C-0D7A50049E5E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
