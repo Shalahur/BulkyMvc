@@ -36,6 +36,10 @@
       <AdditionalFiles Include="Areas\Admin\Views\Category\Delete.cshtml" />
       <AdditionalFiles Include="Areas\Admin\Views\Category\Edit.cshtml" />
       <AdditionalFiles Include="Areas\Admin\Views\Category\Index.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\Product\Create.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\Product\Delete.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\Product\Edit.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\Product\Index.cshtml" />
       <AdditionalFiles Include="Areas\Customer\Views\Home\Index.cshtml" />
       <AdditionalFiles Include="Areas\Customer\Views\Home\Privacy.cshtml" />
     </ItemGroup>
