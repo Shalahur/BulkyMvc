@@ -1,48 +1,61 @@
 ﻿using Bulky.DataAccess.Repository.IRepository;
 using Bulky.Models;
+using Bulky.Models.ViewModel;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BulkyWeb.Areas.Admin.Controllers;
 
 [Area("Admin")]
 public class ProductController : Controller
 {
-    private readonly IUnitOfWork _db;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public ProductController(IUnitOfWork db)
+    public ProductController(IUnitOfWork unitOfWork)
     {
-        _db = db;
+        _unitOfWork = unitOfWork;
     }
 
     public IActionResult Index()
     {
-        List<Product> products = _db.Product.GetAll().ToList();
+        List<Product> products = _unitOfWork.Product.GetAll().ToList();
         return View(products);
     }
 
     public IActionResult Create()
     {
-        return View();
+        ProductVM productVM = new()
+        {
+            Categories = _unitOfWork.Category.GetAll().Select(u => new SelectListItem
+            {
+                Text = u.Name,
+                Value = u.Id.ToString()
+            }),
+            Product = new Product()
+        };
+
+        return View(productVM);
     }
 
     [HttpPost]
-    public IActionResult Create(Product product)
+    public IActionResult Create(ProductVM productVM)
     {
-        // for custom error message
-        if (product.Title == product.Description.ToString())
-        {
-            ModelState.AddModelError("Title", "Title and Description must be different.");
-        }
-
         if (ModelState.IsValid)
         {
-            _db.Product.Add(product);
-            _db.Save();
+            _unitOfWork.Product.Add(productVM.Product);
+            _unitOfWork.Save();
             TempData["Success"] = "Product created successfully.";
             return RedirectToAction("Index");
         }
-
-        return View(product);
+        else
+        {
+            productVM.Categories = _unitOfWork.Category.GetAll().Select(u => new SelectListItem
+            {
+                Text = u.Name,
+                Value = u.Id.ToString()
+            });
+            return View(productVM);
+        }
     }
 
     public IActionResult Edit(int id)
@@ -52,7 +65,7 @@ public class ProductController : Controller
             return NotFound();
         }
 
-        Product? product = _db.Product.Get(u => u.Id == id);
+        Product? product = _unitOfWork.Product.Get(u => u.Id == id);
 
         if (product == null)
         {
@@ -67,8 +80,8 @@ public class ProductController : Controller
     {
         if (ModelState.IsValid)
         {
-            _db.Product.Update(product);
-            _db.Save();
+            _unitOfWork.Product.Update(product);
+            _unitOfWork.Save();
             TempData["Success"] = "Product updated successfully.";
             return RedirectToAction("Index");
         }
@@ -80,7 +93,7 @@ public class ProductController : Controller
     {
         if (id == null || id == 0) return NotFound();
 
-        Product? product = _db.Product.Get(u => u.Id == id);
+        Product? product = _unitOfWork.Product.Get(u => u.Id == id);
 
         if (product == null) return NotFound();
 
@@ -92,12 +105,12 @@ public class ProductController : Controller
     {
         if (id == null || id == 0) return NotFound();
 
-        Product? product = _db.Product.Get(u => u.Id == id);
+        Product? product = _unitOfWork.Product.Get(u => u.Id == id);
 
         if (product == null) return NotFound();
 
-        _db.Product.Remove(product);
-        _db.Save();
+        _unitOfWork.Product.Remove(product);
+        _unitOfWork.Save();
         TempData["Success"] = "Product deleted successfully.";
         return RedirectToAction("Index");
     }
