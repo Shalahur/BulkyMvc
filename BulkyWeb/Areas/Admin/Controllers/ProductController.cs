@@ -36,7 +36,7 @@ public class ProductController : Controller
             Product = new Product()
         };
 
-        if (Id != null || Id != 0)
+        if (Id != null && Id != 0)
         {
             productVM.Product = _unitOfWork.Product.Get(u => u.Id == Id);
         }
