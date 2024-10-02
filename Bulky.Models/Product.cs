@@ -41,9 +41,11 @@ public class Product
     public double Price100 { get; set; }
     
     public int CategoryId { get; set; }
+    
     [ForeignKey("CategoryId")]
     [ValidateNever]
     public Category category { get; set; }
+    
     [ValidateNever]
     public string ImageUrl { get; set; }
 }
