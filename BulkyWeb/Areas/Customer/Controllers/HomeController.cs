@@ -20,8 +20,14 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        IEnumerable<Product> products = _unitOfWork.Product.GetAll(includeProperties:"Category");
+        IEnumerable<Product> products = _unitOfWork.Product.GetAll(includeProperties: "Category");
         return View(products);
+    }
+
+    public IActionResult Details(int productId)
+    {
+        Product product = _unitOfWork.Product.Get(p => p.Id == productId, includeProperties: "Category");
+        return View(product);
     }
 
     public IActionResult Privacy()
