@@ -13,6 +13,9 @@
       <Reference Include="Microsoft.AspNetCore.Mvc.ViewFeatures">
         <HintPath>C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.8\Microsoft.AspNetCore.Mvc.ViewFeatures.dll</HintPath>
       </Reference>
+      <Reference Include="Microsoft.Extensions.Identity.Stores">
+        <HintPath>C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.8\Microsoft.Extensions.Identity.Stores.dll</HintPath>
+      </Reference>
     </ItemGroup>
 
 </Project>
