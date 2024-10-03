@@ -20,7 +20,7 @@ public class ProductController : Controller
 
     public IActionResult Index()
     {
-        List<Product> products = _unitOfWork.Product.GetAll(includeProperties:"Category" ).ToList();
+        List<Product> products = _unitOfWork.Product.GetAll(includeProperties: "Category").ToList();
         return View(products);
     }
 
@@ -74,7 +74,7 @@ public class ProductController : Controller
                 productVM.Product.ImageUrl = @"\images\product\" + fileName;
             }
 
-            if (productVM.Product.Id==0)
+            if (productVM.Product.Id == 0)
             {
                 _unitOfWork.Product.Add(productVM.Product);
             }
@@ -82,7 +82,7 @@ public class ProductController : Controller
             {
                 _unitOfWork.Product.Update(productVM.Product);
             }
-            
+
             _unitOfWork.Save();
             TempData["Success"] = "Product created successfully.";
             return RedirectToAction("Index");
@@ -123,4 +123,17 @@ public class ProductController : Controller
         TempData["Success"] = "Product deleted successfully.";
         return RedirectToAction("Index");
     }
+
+    #region API Calls
+
+    public IActionResult GetAll()
+    {
+        List<Product> products = _unitOfWork.Product.GetAll(includeProperties: "Category").ToList();
+        return Json(new
+        {
+            data = products
+        });
+    }
+
+    #endregion
 }

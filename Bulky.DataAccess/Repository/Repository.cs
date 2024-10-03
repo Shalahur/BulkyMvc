@@ -36,7 +36,7 @@ public class Repository<T> : IRepository<T> where T : class
     {
         IQueryable<T> query = dbSet;
         query = query.Where(filter);
-        if (string.IsNullOrEmpty(includeProperties))
+        if (!string.IsNullOrEmpty(includeProperties))
         {
             foreach (var includeProperty in includeProperties.Split(new char[] { ',' },
                          StringSplitOptions.RemoveEmptyEntries))
