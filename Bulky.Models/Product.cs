@@ -44,7 +44,7 @@ public class Product
     
     [ForeignKey("CategoryId")]
     [ValidateNever]
-    public Category category { get; set; }
+    public Category Category { get; set; }
     
     [ValidateNever]
     public string ImageUrl { get; set; }
